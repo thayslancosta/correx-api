@@ -11,8 +11,7 @@ logs/
 
 .DS_Store
 .idea/
-.vscode/*
-!.vscode/settings.json
+.vscode/
 *.iml
 
 docker-compose.override.yml
