@@ -4,8 +4,8 @@ Spring Boot API for a writing-assessment workflow. The service provides teacher
 authentication, classes, students, assessment criteria, essay uploads, automated
 correction requests and manual review.
 
-This directory is currently an unversioned local project. No GitHub repository or
-public deployment is claimed by this document.
+This repository is prepared for the public `thayslancosta/correx-api` portfolio
+repository. No production deployment is claimed by this document.
 
 ## Features
 
@@ -124,8 +124,6 @@ invalidate a key that may already have been exposed.
 
 ## Status and publication
 
-This preparation documents and hardens the local project. It does not initialize
-Git, create a repository, make a commit or publish code. Before publication,
-confirm the source and team authorization, review the complete history if one is
-found, choose the repository destination and add an appropriate license only after
-its terms are agreed.
+This preparation documents and hardens the academic project. It does not claim
+production readiness or complete test coverage. The repository has no license file;
+licensing should be decided separately before redistribution.
