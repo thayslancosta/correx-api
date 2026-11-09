@@ -1,0 +1,108 @@
+spring:
+  application:
+    name: correx-api
+  profiles:
+    active: dev
+  jpa:
+    show-sql: false
+    properties:
+      hibernate:
+        format_sql: true
+  flyway:
+    enabled: true
+    locations: classpath:db/migration
+  servlet:
+    multipart:
+      max-file-size: 10MB
+      max-request-size: 10MB
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health
+  endpoint:
+    health:
+      show-details: when-authorized
+
+---
+# DEV Profile
+spring:
+  config:
+    activate:
+      on-profile: dev
+  datasource:
+    url: jdbc:h2:file:./data/correxdb;DB_CLOSE_ON_EXIT=FALSE
+    driver-class-name: org.h2.Driver
+    username: sa
+    password:
+  h2:
+    console:
+      enabled: true
+      path: /h2-console
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    show-sql: true
+
+server:
+  port: 8080
+
+cors:
+  allowed-origins: http://localhost:5173
+
+jwt:
+  secret: ${JWT_SECRET}
+
+openai:
+  api-key: ${OPENAI_API_KEY:}
+  model: gpt-4o-mini
+  max-tokens: 2000
+  temperature: 0.3
+  ocr-model: gpt-4o
+  ocr-max-tokens: 4000
+
+app:
+  dev-user:
+    enabled: true
+  seed:
+    enabled: false
+
+---
+# PROD Profile
+spring:
+  config:
+    activate:
+      on-profile: prod
+  datasource:
+    url: ${DATABASE_URL}
+    username: ${DB_USER}
+    password: ${DB_PASS}
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    show-sql: false
+
+server:
+  port: 8080
+
+cors:
+  allowed-origins: ${CORS_ORIGINS:http://localhost:5173}
+
+jwt:
+  secret: ${JWT_SECRET}
+
+openai:
+  api-key: ${OPENAI_API_KEY:}
+  model: gpt-4o-mini
+  max-tokens: 2000
+  temperature: 0.3
+  ocr-model: gpt-4o
+  ocr-max-tokens: 4000
+
+app:
+  dev-user:
+    enabled: false
+  seed:
+    enabled: false
