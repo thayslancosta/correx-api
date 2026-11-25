@@ -16,6 +16,7 @@ import java.util.concurrent.ConcurrentHashMap;
 public class RateLimitConfig {
 
     private final Map<String, Bucket> buckets = new ConcurrentHashMap<>();
+    private final Map<String, Bucket> strictBuckets = new ConcurrentHashMap<>();
 
     /**
      * Cria bucket de rate limit para IP específico
@@ -40,6 +41,10 @@ public class RateLimitConfig {
      * Login/Register: 5 requisições por minuto
      */
     public Bucket resolveStrictBucket(String ip) {
+        return strictBuckets.computeIfAbsent(ip, k -> createStrictBucket());
+    }
+
+    private Bucket createStrictBucket() {
         Bandwidth limit = Bandwidth.simple(5, Duration.ofMinutes(1));
         return Bucket.builder()
             .addLimit(limit)

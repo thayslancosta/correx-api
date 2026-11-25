@@ -67,6 +67,8 @@ app:
     enabled: true
   seed:
     enabled: false
+  registration:
+    enabled: true
 
 ---
 # PROD Profile
@@ -105,4 +107,13 @@ app:
   dev-user:
     enabled: false
   seed:
+    enabled: false
+  registration:
+    # Cadastro público desligado no piloto; ligue com APP_REGISTRATION_ENABLED=true só para criar contas.
+    enabled: ${APP_REGISTRATION_ENABLED:false}
+
+springdoc:
+  api-docs:
+    enabled: false
+  swagger-ui:
     enabled: false

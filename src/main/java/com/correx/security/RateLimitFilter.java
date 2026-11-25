@@ -47,7 +47,11 @@ public class RateLimitFilter extends OncePerRequestFilter {
         } else {
             long waitForRefill = 60; // esperar 60 segundos por padrão
             response.addHeader("X-Rate-Limit-Retry-After-Seconds", String.valueOf(waitForRefill));
-            response.sendError(429, "Too many requests - please retry after " + waitForRefill + " seconds");
+            // setStatus em vez de sendError: sendError despacha para /error, que é protegido e virava 403.
+            response.setStatus(429);
+            response.setContentType("application/json;charset=UTF-8");
+            response.getWriter().write("{\"status\":429,\"code\":\"TOO_MANY_REQUESTS\",\"message\":\"Muitas tentativas. Aguarde "
+                    + waitForRefill + " segundos e tente novamente.\",\"errors\":[]}");
         }
     }
 
