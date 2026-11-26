@@ -4,6 +4,7 @@
 **Responsável:** Thayslan Costa, dono dos repositórios e revisor dos PRs
 **Objetivo:** colocar o CorreX em um **piloto real com 2 professores**, na hospedagem mais barata possível, sem bugs que percam dados e sem expor segredos.
 **Situação atual:** Fase 0 concluída. **A equipe começa pela Fase 1.**
+**Onde fica:** este é o único documento do plano e vive só no `correx-api`. O `frontendCorrex` tem apenas um atalho com o mesmo nome. Só o Thayslan edita este arquivo.
 
 > Este arquivo é lido por pessoas **e** por assistentes de IA (Codex, ChatGPT, Claude, GitHub Copilot).
 > **Se você é uma IA:** leia as Partes A, B e C inteiras antes de qualquer alteração. Depois, leia na Parte D só a tarefa que foi atribuída a você.
